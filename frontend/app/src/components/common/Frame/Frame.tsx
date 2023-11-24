@@ -1,0 +1,24 @@
+import { Box } from '@chakra-ui/react';
+
+export interface FrameProps {
+  children: JSX.Element;
+}
+
+export function Frame({ children }: FrameProps) {
+  return (
+    <Box
+      backgroundColor='#CCCCCC'
+      p='6px'
+      width='fit-content'
+      skewY={-5}
+      transform='auto'
+      borderRadius='2px'
+    >
+      <Box backgroundColor='#1E88E5' p='6px' width='fit-content' borderRadius='1px'>
+        <Box transform='auto' skewY={5} my='10px'>
+          {children}
+        </Box>
+      </Box>
+    </Box>
+  );
+}
