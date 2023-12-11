@@ -15,7 +15,7 @@ export function FieldCell({ x, y, onClickFieldCell }: FieldCellProps) {
   };
 
   const opacity = useMemo(() => {
-    return y < 12 ? 0.5 : 0;
+    return y < 12 ? 0.7 : 0;
   }, [y]);
 
   return (
