@@ -1,5 +1,5 @@
 export interface FieldPuyoInterface {
-  color: number;
+  pColor: number;
   coord: CoordInterface;
   connect: FieldPuyoConnectInterface;
 }
@@ -14,4 +14,9 @@ export interface FieldPuyoConnectInterface {
   isConnectedToRight: boolean;
   isConnectedToBelow: boolean;
   isConnectedToLeft: boolean;
+}
+
+export interface FieldInterface {
+  fieldPuyoList: FieldPuyoInterface[];
+  score: number;
 }

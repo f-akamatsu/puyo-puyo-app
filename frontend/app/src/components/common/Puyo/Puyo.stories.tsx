@@ -13,7 +13,7 @@ export const Basic: Story = (args: PuyoProps) => {
 };
 
 Basic.args = {
-  color: 1,
+  pColor: 1,
   connect: {
     isConnectedToAbove: false,
     isConnectedToRight: false,
