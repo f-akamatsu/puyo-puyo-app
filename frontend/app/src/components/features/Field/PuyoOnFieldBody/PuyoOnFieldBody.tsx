@@ -9,7 +9,6 @@ export interface PuyoOnFieldBodyProps {
 }
 
 export function PuyoOnFieldBody({ fieldPuyoList, onClickFieldCell }: PuyoOnFieldBodyProps) {
-  // TODO 続きここから
   const convertY = (y: number) => {
     return 12 - y;
   };

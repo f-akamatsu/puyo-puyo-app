@@ -4,18 +4,25 @@ import { useMemo } from 'react';
 
 export interface PuyoProps extends ImgProps {
   pColor: number;
-  connect: FieldPuyoConnectInterface;
+  connect?: FieldPuyoConnectInterface;
 }
 
 export function Puyo({ pColor, connect, ...otherProps }: PuyoProps) {
   const src = useMemo(() => {
     const col = pColor;
-    const ca = connect.isConnectedToAbove ? '1' : '0';
-    const cr = connect.isConnectedToRight ? '1' : '0';
-    const cb = connect.isConnectedToBelow ? '1' : '0';
-    const cl = connect.isConnectedToLeft ? '1' : '0';
 
-    return `${col}/${ca}${cr}${cb}${cl}.svg`;
+    let con: string;
+    if (connect === undefined) {
+      con = '0000';
+    } else {
+      const a = connect.isConnectedToAbove ? '1' : '0';
+      const r = connect.isConnectedToRight ? '1' : '0';
+      const b = connect.isConnectedToBelow ? '1' : '0';
+      const l = connect.isConnectedToLeft ? '1' : '0';
+      con = `${a}${r}${b}${l}`;
+    }
+
+    return `${col}/${con}.svg`;
   }, [pColor, connect]);
 
   return (
