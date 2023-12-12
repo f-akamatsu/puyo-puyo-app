@@ -12,9 +12,9 @@ export function Frame({ children }: FrameProps) {
       width='fit-content'
       skewY={-5}
       transform='auto'
-      borderRadius='2px'
+      borderRadius='4px'
     >
-      <Box backgroundColor='#1E88E5' p='6px' width='fit-content' borderRadius='1px'>
+      <Box backgroundColor='#1E88E5' p='6px' width='fit-content' borderRadius='3px'>
         <Box transform='auto' skewY={5} my='10px'>
           {children}
         </Box>
