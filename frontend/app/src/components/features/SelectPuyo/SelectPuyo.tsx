@@ -29,7 +29,16 @@ export function SelectPuyo({ selectedPColor, setSelectedPColor }: SelectPuyoProp
   };
 
   return (
-    <SimpleGrid columns={3} w='fit-content'>
+    <SimpleGrid
+      columns={3}
+      w='fit-content'
+      bgColor='#FCFCFC'
+      p='6px'
+      borderWidth='4px'
+      borderColor='#1E88E5'
+      borderStyle='solid'
+      borderRadius='10px'
+    >
       {pColorList.map((pColor) => (
         <Center
           w='44px'
@@ -39,6 +48,9 @@ export function SelectPuyo({ selectedPColor, setSelectedPColor }: SelectPuyoProp
           opacity={opacity(pColor)}
           borderRadius='50%'
           cursor='pointer'
+          onClick={() => {
+            setSelectedPColor(pColor);
+          }}
         >
           {pColor === 0 ? <Kesu /> : <Puyo pColor={pColor} />}
         </Center>
