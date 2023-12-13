@@ -21,6 +21,7 @@ export function Score({ score }: ScoreProps) {
       fontFamily='Arial Black'
       color='#FEFEFE'
       textShadow='-1px -1px 1px #303030, -1px 0px 1px #303030, -1px 1px 1px #303030, 0px -1px 1px #303030, 0px 0px 1px #303030, 0px 1px 1px #303030, 1px -1px 1px #303030, 1px 0px 1px #303030, 2px 2px 1px #303030'
+      lineHeight='100%'
     >
       {dispScore}
     </Text>
