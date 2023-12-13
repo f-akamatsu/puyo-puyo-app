@@ -39,8 +39,9 @@ export function SelectPuyo({ selectedPColor, setSelectedPColor }: SelectPuyoProp
       borderStyle='solid'
       borderRadius='10px'
     >
-      {pColorList.map((pColor) => (
+      {pColorList.map((pColor, index) => (
         <Center
+          key={index}
           w='44px'
           h='44px'
           m='2px'
