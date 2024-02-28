@@ -16,10 +16,10 @@ const bgColorList: { [key: number]: string } = {
 
 export interface SelectPuyoProps {
   selectedPColor: number;
-  setSelectedPColor: Dispatch<SetStateAction<number>>;
+  onClick: (newPColor: number) => void;
 }
 
-export function SelectPuyo({ selectedPColor, setSelectedPColor }: SelectPuyoProps) {
+export function SelectPuyo({ selectedPColor, onClick }: SelectPuyoProps) {
   const opacity = (pColor: number) => {
     return pColor === selectedPColor ? 1 : 0.3;
   };
@@ -50,7 +50,7 @@ export function SelectPuyo({ selectedPColor, setSelectedPColor }: SelectPuyoProp
           borderRadius='50%'
           cursor='pointer'
           onClick={() => {
-            setSelectedPColor(pColor);
+            onClick(pColor);
           }}
         >
           {pColor === 0 ? <Kesu /> : <Puyo pColor={pColor} />}
