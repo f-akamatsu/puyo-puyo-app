@@ -1,6 +1,5 @@
 import { Puyo } from '../../common/Puyo/Puyo';
 import { Center, SimpleGrid } from '@chakra-ui/react';
-import { Dispatch, SetStateAction } from 'react';
 import { Kesu } from './Kesu/Kesu';
 
 const pColorList = [1, 2, 3, 4, 5, 9, 0];
