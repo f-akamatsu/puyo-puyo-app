@@ -13,5 +13,5 @@ export const Basic: Story = (args: SelectPuyoProps) => {
 };
 
 Basic.args = {
-  selectedPColor: 1,
+  selectedPuyoColor: 1,
 };

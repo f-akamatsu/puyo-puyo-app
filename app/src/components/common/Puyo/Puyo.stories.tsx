@@ -13,11 +13,11 @@ export const Basic: Story = (args: PuyoProps) => {
 };
 
 Basic.args = {
-  pColor: 1,
-  connect: {
-    isConnectedToAbove: false,
-    isConnectedToRight: false,
-    isConnectedToBelow: false,
-    isConnectedToLeft: false,
+  puyoColor: 1,
+  stickTogether: {
+    above: false,
+    right: false,
+    below: false,
+    left: false,
   },
 };

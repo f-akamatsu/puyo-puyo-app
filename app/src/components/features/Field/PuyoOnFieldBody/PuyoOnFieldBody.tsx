@@ -1,14 +1,14 @@
-import { FieldPuyoInterface } from '@/interfaces/FieldPuyoInterfaces';
+import { FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
 import { FieldBody } from '../FieldBody/FieldBody';
 import { Box } from '@chakra-ui/react';
 import { Puyo } from '../../../common/Puyo/Puyo';
 
 export interface PuyoOnFieldBodyProps {
-  fieldPuyoList: FieldPuyoInterface[];
+  fieldPuyos: FieldPuyoInterface[];
   onClickFieldCell?: (x: number, y: number) => void;
 }
 
-export function PuyoOnFieldBody({ fieldPuyoList, onClickFieldCell }: PuyoOnFieldBodyProps) {
+export function PuyoOnFieldBody({ fieldPuyos, onClickFieldCell }: PuyoOnFieldBodyProps) {
   const convertY = (y: number) => {
     return 12 - y;
   };
@@ -24,10 +24,10 @@ export function PuyoOnFieldBody({ fieldPuyoList, onClickFieldCell }: PuyoOnField
   return (
     <Box position='relative'>
       <FieldBody onClickFieldCell={onClickFieldCell} top={0} left={0} />
-      {fieldPuyoList.map((p) => (
+      {fieldPuyos.map((p) => (
         <Puyo
-          pColor={p.pColor}
-          connect={p.connect}
+          puyoColor={p.puyoColor}
+          stickTogether={p.stickTogether}
           position='absolute'
           top={top(p.coord.y)}
           left={left(p.coord.x)}

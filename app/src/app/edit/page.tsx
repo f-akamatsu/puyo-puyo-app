@@ -1,10 +1,20 @@
 'use client';
 
 import { useState } from 'react';
-import { SelectPuyo } from '../../components/features/SelectPuyo/SelectPuyo';
+import { EditorPresenter } from './presenter';
+import { FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
 
 export default function Edit() {
-  const [selectedPColor, setSelectedPColor] = useState<number>(1);
+  const [selectedPuyoColor, setSelectedPuyoColor] = useState<number>(1);
+  const [fieldPuyos, setFieldPuyos] = useState<FieldPuyoInterface[]>([]);
+  const [score, setScore] = useState<number>(0);
 
-  return <SelectPuyo selectedPColor={selectedPColor} onClick={setSelectedPColor} />;
+  return (
+    <EditorPresenter
+      selectedPuyoColor={selectedPuyoColor}
+      fieldPuyos={fieldPuyos}
+      score={score}
+      onClickSelectPuyo={setSelectedPuyoColor}
+    />
+  );
 }

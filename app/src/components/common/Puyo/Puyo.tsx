@@ -1,29 +1,29 @@
-import { FieldPuyoConnectInterface } from '@/interfaces/FieldPuyoInterfaces';
+import { StickTogetherInterface } from '@/interfaces/FieldInterfaces';
 import { Img, ImgProps } from '@chakra-ui/react';
 import { useMemo } from 'react';
 
 export interface PuyoProps extends ImgProps {
-  pColor: number;
-  connect?: FieldPuyoConnectInterface;
+  puyoColor: number;
+  stickTogether?: StickTogetherInterface;
 }
 
-export function Puyo({ pColor, connect, ...otherProps }: PuyoProps) {
+export function Puyo({ puyoColor, stickTogether, ...otherProps }: PuyoProps) {
   const src = useMemo(() => {
-    const col = pColor;
+    const _c = puyoColor;
 
-    let con: string;
-    if (connect === undefined) {
-      con = '0000';
+    let _s: string;
+    if (stickTogether === undefined) {
+      _s = '0000';
     } else {
-      const a = connect.isConnectedToAbove ? '1' : '0';
-      const r = connect.isConnectedToRight ? '1' : '0';
-      const b = connect.isConnectedToBelow ? '1' : '0';
-      const l = connect.isConnectedToLeft ? '1' : '0';
-      con = `${a}${r}${b}${l}`;
+      const a = stickTogether.above ? '1' : '0';
+      const r = stickTogether.right ? '1' : '0';
+      const b = stickTogether.below ? '1' : '0';
+      const l = stickTogether.left ? '1' : '0';
+      _s = `${a}${r}${b}${l}`;
     }
 
-    return `${col}/${con}.svg`;
-  }, [pColor, connect]);
+    return `${_c}/${_s}.svg`;
+  }, [puyoColor, stickTogether]);
 
   return (
     <Img

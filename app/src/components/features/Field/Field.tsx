@@ -1,19 +1,20 @@
 import { Frame } from '../../common/Frame/Frame';
 import { PuyoOnFieldBody } from './PuyoOnFieldBody/PuyoOnFieldBody';
-import { FieldInterface } from '@/interfaces/FieldPuyoInterfaces';
+import { FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
 import { Score } from './Score/Score';
 
 export interface FieldProps {
-  field: FieldInterface;
+  fieldPuyos: FieldPuyoInterface[];
+  score: number;
   onClickFieldCell?: (x: number, y: number) => void;
 }
 
-export function Field({ field, onClickFieldCell }: FieldProps) {
+export function Field({ fieldPuyos, score, onClickFieldCell }: FieldProps) {
   return (
     <Frame>
       <>
-        <PuyoOnFieldBody onClickFieldCell={onClickFieldCell} fieldPuyoList={field.fieldPuyoList} />
-        <Score score={field.score} />
+        <PuyoOnFieldBody onClickFieldCell={onClickFieldCell} fieldPuyos={fieldPuyos} />
+        <Score score={score} />
       </>
     </Frame>
   );

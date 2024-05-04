@@ -13,64 +13,64 @@ export const Basic: Story = (args: PuyoOnFieldBodyProps) => {
 };
 
 Basic.args = {
-  fieldPuyoList: [
+  fieldPuyos: [
     {
-      pColor: 1,
-      connect: {
-        isConnectedToAbove: false,
-        isConnectedToRight: false,
-        isConnectedToBelow: false,
-        isConnectedToLeft: false,
+      puyoColor: 1,
+      stickTogether: {
+        above: false,
+        right: false,
+        below: false,
+        left: false,
       },
       coord: { x: 0, y: 0 },
     },
     {
-      pColor: 2,
-      connect: {
-        isConnectedToAbove: false,
-        isConnectedToRight: false,
-        isConnectedToBelow: false,
-        isConnectedToLeft: false,
+      puyoColor: 2,
+      stickTogether: {
+        above: false,
+        right: false,
+        below: false,
+        left: false,
       },
       coord: { x: 1, y: 1 },
     },
     {
-      pColor: 3,
-      connect: {
-        isConnectedToAbove: false,
-        isConnectedToRight: false,
-        isConnectedToBelow: false,
-        isConnectedToLeft: false,
+      puyoColor: 3,
+      stickTogether: {
+        above: false,
+        right: false,
+        below: false,
+        left: false,
       },
       coord: { x: 2, y: 2 },
     },
     {
-      pColor: 4,
-      connect: {
-        isConnectedToAbove: false,
-        isConnectedToRight: false,
-        isConnectedToBelow: false,
-        isConnectedToLeft: false,
+      puyoColor: 4,
+      stickTogether: {
+        above: false,
+        right: false,
+        below: false,
+        left: false,
       },
       coord: { x: 3, y: 3 },
     },
     {
-      pColor: 5,
-      connect: {
-        isConnectedToAbove: false,
-        isConnectedToRight: false,
-        isConnectedToBelow: false,
-        isConnectedToLeft: false,
+      puyoColor: 5,
+      stickTogether: {
+        above: false,
+        right: false,
+        below: false,
+        left: false,
       },
       coord: { x: 4, y: 4 },
     },
     {
-      pColor: 9,
-      connect: {
-        isConnectedToAbove: false,
-        isConnectedToRight: false,
-        isConnectedToBelow: false,
-        isConnectedToLeft: false,
+      puyoColor: 9,
+      stickTogether: {
+        above: false,
+        right: false,
+        below: false,
+        left: false,
       },
       coord: { x: 5, y: 5 },
     },
