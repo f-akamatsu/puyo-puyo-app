@@ -14,6 +14,8 @@ export function Puyo({ puyoColor, connect, ...otherProps }: PuyoProps) {
     let _s: string;
     if (connect === undefined) {
       _s = '0000';
+    } else if (puyoColor === 9) {
+      _s = '0000';
     } else {
       const a = connect.above ? '1' : '0';
       const r = connect.right ? '1' : '0';
