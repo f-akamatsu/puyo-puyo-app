@@ -75,6 +75,7 @@ Basic.args = {
       fieldCoord: { x: 5, y: 5 },
     },
   ],
+  score: 12345678,
   onClickFieldCell: (fieldCoord) => {
     console.log(`onClickFieldCell[fieldCoord=${fieldCoord}]`);
   },

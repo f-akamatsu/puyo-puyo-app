@@ -42,6 +42,8 @@ export default function Edit() {
     };
     const newFieldPuyos = fieldServie.setFieldPuyo(fieldPuyos, newFieldPuyo);
     setFieldPuyos(newFieldPuyos);
+
+    console.log(newFieldPuyos);
   };
 
   return (

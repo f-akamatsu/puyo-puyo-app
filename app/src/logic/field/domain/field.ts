@@ -72,6 +72,13 @@ export class Field {
           connectArray.push(false);
         }
       });
+
+      fieldPuyo.connect = new Connect(
+        connectArray[0],
+        connectArray[1],
+        connectArray[2],
+        connectArray[3]
+      );
     });
   }
 

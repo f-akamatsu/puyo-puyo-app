@@ -28,7 +28,7 @@ export function Puyo({ puyoColor, connect, ...otherProps }: PuyoProps) {
   return (
     <Img
       src={`images/puyo/${src}`}
-      w='32px'
+      w='31.5px'
       h='30px'
       userSelect='none'
       pointerEvents='none'
