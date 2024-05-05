@@ -2,7 +2,7 @@ import { FieldCoordInterface } from '@/interfaces/FieldInterfaces';
 import { Coord } from '@/logic/common/domain/coord';
 
 /**
- * 座標
+ * Field座標
  */
 export class FieldCoord extends Coord {
   static readonly X_SIZE = 6;
@@ -34,13 +34,6 @@ export class FieldCoord extends Coord {
    */
   isGhost(): boolean {
     return this.y === FieldCoord.Y_SIZE - 1;
-  }
-
-  /**
-   * equals
-   */
-  equals(fieldCoord: FieldCoord): boolean {
-    return this.x === fieldCoord.x && this.y === fieldCoord.y;
   }
 
   toInterface(): FieldCoordInterface {

@@ -29,7 +29,7 @@ export class Field {
    * ぷよを取り除く
    */
   removeFieldPuyo(fieldCoord: FieldCoord): void {
-    const removedFiledPuyos = this._fieldPuyos.filter((p) => !p.isSameCoord(fieldCoord));
+    const removedFiledPuyos = this._fieldPuyos.filter((p) => !p.fieldCoord.equals(fieldCoord));
     this._fieldPuyos = removedFiledPuyos;
     this.setConnect();
   }
@@ -88,7 +88,7 @@ export class Field {
   private getFieldPuyo(fieldCoord: FieldCoord): FieldPuyo {
     const fieldPuyo = Optional.ofNullable(
       this._fieldPuyos.find((p) => {
-        return p.isSameCoord(fieldCoord);
+        return p.fieldCoord.equals(fieldCoord);
       })
     );
     return fieldPuyo.get();

@@ -18,13 +18,6 @@ export class FieldPuyo {
   }
 
   /**
-   * 座標が同じか
-   */
-  isSameCoord(fieldCoord: FieldCoord): boolean {
-    return this._fieldCoord.equals(fieldCoord);
-  }
-
-  /**
    *
    */
   toInterface(): FieldPuyoInterface {

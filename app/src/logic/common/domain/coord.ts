@@ -1,3 +1,6 @@
+/**
+ * 座標
+ */
 export class Coord {
   static readonly URDL = [new Coord(0, 1), new Coord(1, 0), new Coord(0, -1), new Coord(-1, 0)];
 
@@ -7,6 +10,13 @@ export class Coord {
   constructor(x: number, y: number) {
     this._x = x;
     this._y = y;
+  }
+
+  /**
+   * equals
+   */
+  equals(coord: Coord): boolean {
+    return this._x === coord.x && this._y === coord.y;
   }
 
   get x(): number {
