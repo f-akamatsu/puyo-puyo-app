@@ -1,11 +1,11 @@
-import { CoordInterface } from '@/interfaces/FieldInterfaces';
+import { FieldCoordInterface } from '@/interfaces/FieldInterfaces';
 import { Box } from '@chakra-ui/react';
 import { useMemo } from 'react';
 
 export interface FieldCellProps {
   x: number;
   y: number;
-  onClickFieldCell?: (coord: CoordInterface) => void;
+  onClickFieldCell?: (fieldCoord: FieldCoordInterface) => void;
 }
 
 export function FieldCell({ x, y, onClickFieldCell }: FieldCellProps) {

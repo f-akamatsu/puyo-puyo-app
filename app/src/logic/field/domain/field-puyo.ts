@@ -1,44 +1,55 @@
 import { FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
 import { PuyoColor } from '../../common/domain/puyo-color';
 import { Connect } from './connect';
-import { Coord } from './coord';
+import { FieldCoord } from './field-coord';
 
 /**
  * フィールド上のぷよ
  */
 export class FieldPuyo {
   private readonly _puyoColor: PuyoColor;
-  private _coord: Coord;
+  private _fieldCoord: FieldCoord;
   private _connect: Connect;
 
-  constructor(puyoColor: PuyoColor, coord: Coord) {
-    if (puyoColor === PuyoColor.NONE)
-      throw new Error('PuyoColor.NONEはFieldPuyoの色として設定できません。');
-
+  constructor(puyoColor: PuyoColor, fieldCoord: FieldCoord) {
     this._puyoColor = puyoColor;
-    this._coord = coord;
+    this._fieldCoord = fieldCoord;
     this._connect = new Connect();
   }
 
-  isSameCoord(coord: Coord): boolean {
-    return this._coord.equals(coord);
+  /**
+   * 座標が同じか
+   */
+  isSameCoord(fieldCoord: FieldCoord): boolean {
+    return this._fieldCoord.equals(fieldCoord);
   }
 
+  /**
+   *
+   */
   toInterface(): FieldPuyoInterface {
     return {
       puyoColor: this._puyoColor.value,
-      coord: this._coord.toInterface(),
+      fieldCoord: this._fieldCoord.toInterface(),
       connect: this._connect.toInterface(),
     };
   }
 
   static from(fieldPuyoIF: FieldPuyoInterface): FieldPuyo {
     const puyoColor = PuyoColor.fromValue(fieldPuyoIF.puyoColor);
-    const coord = new Coord(fieldPuyoIF.coord.x, fieldPuyoIF.coord.y);
-    return new FieldPuyo(puyoColor, coord);
+    const fieldCoord = new FieldCoord(fieldPuyoIF.fieldCoord.x, fieldPuyoIF.fieldCoord.y);
+    return new FieldPuyo(puyoColor, fieldCoord);
   }
 
-  get coord(): Coord {
-    return this._coord;
+  get puyoColor(): PuyoColor {
+    return this._puyoColor;
+  }
+
+  get fieldCoord(): FieldCoord {
+    return this._fieldCoord;
+  }
+
+  set connect(connect: Connect) {
+    this._connect = connect;
   }
 }

@@ -1,9 +1,9 @@
 import { BoxProps, HStack, VStack } from '@chakra-ui/react';
 import { FieldCell } from '../FieldCell/FieldCell';
-import { CoordInterface } from '@/interfaces/FieldInterfaces';
+import { FieldCoordInterface } from '@/interfaces/FieldInterfaces';
 
 export interface FieldBodyProps extends BoxProps {
-  onClickFieldCell?: (coord: CoordInterface) => void;
+  onClickFieldCell?: (fieldCoord: FieldCoordInterface) => void;
 }
 
 export function FieldBody({ onClickFieldCell, ...otherProps }: FieldBodyProps) {

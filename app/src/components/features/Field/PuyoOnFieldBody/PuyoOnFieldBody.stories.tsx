@@ -22,7 +22,7 @@ Basic.args = {
         below: false,
         left: false,
       },
-      coord: { x: 0, y: 0 },
+      fieldCoord: { x: 0, y: 0 },
     },
     {
       puyoColor: 2,
@@ -32,7 +32,7 @@ Basic.args = {
         below: false,
         left: false,
       },
-      coord: { x: 1, y: 1 },
+      fieldCoord: { x: 1, y: 1 },
     },
     {
       puyoColor: 3,
@@ -42,7 +42,7 @@ Basic.args = {
         below: false,
         left: false,
       },
-      coord: { x: 2, y: 2 },
+      fieldCoord: { x: 2, y: 2 },
     },
     {
       puyoColor: 4,
@@ -52,7 +52,7 @@ Basic.args = {
         below: false,
         left: false,
       },
-      coord: { x: 3, y: 3 },
+      fieldCoord: { x: 3, y: 3 },
     },
     {
       puyoColor: 5,
@@ -62,7 +62,7 @@ Basic.args = {
         below: false,
         left: false,
       },
-      coord: { x: 4, y: 4 },
+      fieldCoord: { x: 4, y: 4 },
     },
     {
       puyoColor: 9,
@@ -72,7 +72,7 @@ Basic.args = {
         below: false,
         left: false,
       },
-      coord: { x: 5, y: 5 },
+      fieldCoord: { x: 5, y: 5 },
     },
   ],
   onClickFieldCell: (x, y) => {

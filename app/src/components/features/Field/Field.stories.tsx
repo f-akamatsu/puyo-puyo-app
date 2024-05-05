@@ -13,72 +13,69 @@ export const Basic: Story = (args: FieldProps) => {
 };
 
 Basic.args = {
-  fieldPuyos: {
-    fieldPuyos: [
-      {
-        puyoColor: 1,
-        connect: {
-          above: false,
-          right: false,
-          below: false,
-          left: false,
-        },
-        coord: { x: 0, y: 0 },
+  fieldPuyos: [
+    {
+      puyoColor: 1,
+      connect: {
+        above: false,
+        right: false,
+        below: false,
+        left: false,
       },
-      {
-        puyoColor: 2,
-        connect: {
-          above: false,
-          right: false,
-          below: false,
-          left: false,
-        },
-        coord: { x: 1, y: 1 },
+      fieldCoord: { x: 0, y: 0 },
+    },
+    {
+      puyoColor: 2,
+      connect: {
+        above: false,
+        right: false,
+        below: false,
+        left: false,
       },
-      {
-        puyoColor: 3,
-        connect: {
-          above: false,
-          right: false,
-          below: false,
-          left: false,
-        },
-        coord: { x: 2, y: 2 },
+      fieldCoord: { x: 1, y: 1 },
+    },
+    {
+      puyoColor: 3,
+      connect: {
+        above: false,
+        right: false,
+        below: false,
+        left: false,
       },
-      {
-        puyoColor: 4,
-        connect: {
-          above: false,
-          right: false,
-          below: false,
-          left: false,
-        },
-        coord: { x: 3, y: 3 },
+      fieldCoord: { x: 2, y: 2 },
+    },
+    {
+      puyoColor: 4,
+      connect: {
+        above: false,
+        right: false,
+        below: false,
+        left: false,
       },
-      {
-        puyoColor: 5,
-        connect: {
-          above: false,
-          right: false,
-          below: false,
-          left: false,
-        },
-        coord: { x: 4, y: 4 },
+      fieldCoord: { x: 3, y: 3 },
+    },
+    {
+      puyoColor: 5,
+      connect: {
+        above: false,
+        right: false,
+        below: false,
+        left: false,
       },
-      {
-        puyoColor: 9,
-        connect: {
-          above: false,
-          right: false,
-          below: false,
-          left: false,
-        },
-        coord: { x: 5, y: 5 },
+      fieldCoord: { x: 4, y: 4 },
+    },
+    {
+      puyoColor: 9,
+      connect: {
+        above: false,
+        right: false,
+        below: false,
+        left: false,
       },
-    ],
-    score: 123456,
-  },
-  onClickFieldCell: (x, y) => {
-    console.log(`onClickFieldCell[x=${x},y=${y}]`);
+      fieldCoord: { x: 5, y: 5 },
+    },
+  ],
+  onClickFieldCell: (fieldCoord) => {
+    console.log(`onClickFieldCell[fieldCoord=${fieldCoord}]`);
   },
 };

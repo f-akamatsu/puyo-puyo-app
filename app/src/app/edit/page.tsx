@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { EditorPresenter } from './presenter';
-import { CoordInterface, FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
+import { FieldCoordInterface, FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
 import { FieldService } from '@/logic/field/service/field.service';
 
 export default function Edit() {
@@ -15,29 +15,29 @@ export default function Edit() {
   /**
    * フィールドがクリックされたとき
    */
-  const handleClickFieldCell = (coord: CoordInterface) => {
+  const handleClickFieldCell = (fieldCoord: FieldCoordInterface) => {
     if (selectedPuyoColor === 0) {
-      removeFieldPuyo(coord);
+      removeFieldPuyo(fieldCoord);
     } else {
-      setFieldPuyo(coord);
+      setFieldPuyo(fieldCoord);
     }
   };
 
   /**
    * フィールドのぷよを消す
    */
-  const removeFieldPuyo = (coord: CoordInterface) => {
-    const newFieldPuyos = fieldServie.removeFieldPuyo(fieldPuyos, coord);
+  const removeFieldPuyo = (fieldCoord: FieldCoordInterface) => {
+    const newFieldPuyos = fieldServie.removeFieldPuyo(fieldPuyos, fieldCoord);
     setFieldPuyos(newFieldPuyos);
   };
 
   /**
    * フィールドにぷよを置く
    */
-  const setFieldPuyo = (coord: CoordInterface) => {
+  const setFieldPuyo = (fieldCoord: FieldCoordInterface) => {
     const newFieldPuyo: FieldPuyoInterface = {
       puyoColor: selectedPuyoColor,
-      coord,
+      fieldCoord: fieldCoord,
       connect: { above: false, right: false, below: false, left: false },
     };
     const newFieldPuyos = fieldServie.setFieldPuyo(fieldPuyos, newFieldPuyo);

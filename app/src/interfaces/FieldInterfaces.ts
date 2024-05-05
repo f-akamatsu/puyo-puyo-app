@@ -1,10 +1,10 @@
 export interface FieldPuyoInterface {
   puyoColor: number;
-  coord: CoordInterface;
+  fieldCoord: FieldCoordInterface;
   connect: ConnectInterface;
 }
 
-export interface CoordInterface {
+export interface FieldCoordInterface {
   x: number;
   y: number;
 }

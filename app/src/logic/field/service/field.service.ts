@@ -1,7 +1,7 @@
-import { CoordInterface, FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
+import { FieldCoordInterface, FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
 import { Field } from '../domain/field';
 import { FieldPuyo } from '../domain/field-puyo';
-import { Coord } from '../domain/coord';
+import { FieldCoord } from '../domain/field-coord';
 
 export class FieldService {
   /**
@@ -24,12 +24,12 @@ export class FieldService {
    */
   removeFieldPuyo(
     fieldPuyosIF: FieldPuyoInterface[],
-    coordIF: CoordInterface
+    fieldCoordIF: FieldCoordInterface
   ): FieldPuyoInterface[] {
     const field = Field.from(fieldPuyosIF);
-    const coord = Coord.from(coordIF);
+    const fieldCoord = FieldCoord.from(fieldCoordIF);
 
-    field.removeFieldPuyo(coord);
+    field.removeFieldPuyo(fieldCoord);
 
     return field.toInterface();
   }
