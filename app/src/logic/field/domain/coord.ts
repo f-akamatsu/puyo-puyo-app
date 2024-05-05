@@ -39,8 +39,19 @@ export class Coord {
     return this._y === Coord.Y_SIZE - 1;
   }
 
+  /**
+   * equals
+   */
+  equals(coord: Coord): boolean {
+    return this._x === coord.x && this._y === coord.y;
+  }
+
   toInterface(): CoordInterface {
     return { x: this._x, y: this._y };
+  }
+
+  static from(coordIF: CoordInterface): Coord {
+    return new Coord(coordIF.x, coordIF.y);
   }
 
   get x(): number {

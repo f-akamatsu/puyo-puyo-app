@@ -1,6 +1,6 @@
 import { Field } from '@/components/features/Field/Field';
 import { SelectPuyo } from '@/components/features/SelectPuyo/SelectPuyo';
-import { FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
+import { CoordInterface, FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
 import { Flex } from '@chakra-ui/react';
 
 export interface EditorPresenterProps {
@@ -8,7 +8,7 @@ export interface EditorPresenterProps {
   fieldPuyos: FieldPuyoInterface[];
   score: number;
   onClickSelectPuyo: (newPuyoColor: number) => void;
-  onClickFieldCell: (x: number, y: number) => void;
+  onClickFieldCell: (coord: CoordInterface) => void;
 }
 
 export function EditorPresenter({

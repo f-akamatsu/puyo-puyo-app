@@ -20,6 +20,10 @@ export class FieldPuyo {
     this._connect = new Connect();
   }
 
+  isSameCoord(coord: Coord): boolean {
+    return this._coord.equals(coord);
+  }
+
   toInterface(): FieldPuyoInterface {
     return {
       puyoColor: this._puyoColor.value,
@@ -32,5 +36,9 @@ export class FieldPuyo {
     const puyoColor = PuyoColor.fromValue(fieldPuyoIF.puyoColor);
     const coord = new Coord(fieldPuyoIF.coord.x, fieldPuyoIF.coord.y);
     return new FieldPuyo(puyoColor, coord);
+  }
+
+  get coord(): Coord {
+    return this._coord;
   }
 }

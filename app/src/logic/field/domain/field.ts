@@ -1,6 +1,5 @@
 import { FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
 import { FieldPuyo } from './field-puyo';
-import { PuyoColor } from '@/logic/common/domain/puyo-color';
 import { Coord } from './coord';
 
 /**
@@ -14,8 +13,20 @@ export class Field {
     this._fieldPuyos = fieldPuyos;
   }
 
+  /**
+   * ぷよをセット
+   */
   setFieldPuyo(newFieldPuyo: FieldPuyo): void {
+    this.removeFieldPuyo(newFieldPuyo.coord);
     this._fieldPuyos.push(newFieldPuyo);
+  }
+
+  /**
+   * ぷよを取り除く
+   */
+  removeFieldPuyo(coord: Coord): void {
+    const removedFiledPuyos = this._fieldPuyos.filter((p) => !p.isSameCoord(coord));
+    this._fieldPuyos = removedFiledPuyos;
   }
 
   toInterface(): FieldPuyoInterface[] {

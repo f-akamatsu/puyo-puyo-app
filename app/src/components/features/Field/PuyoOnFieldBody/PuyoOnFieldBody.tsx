@@ -1,11 +1,11 @@
-import { FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
+import { CoordInterface, FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
 import { FieldBody } from '../FieldBody/FieldBody';
 import { Box } from '@chakra-ui/react';
 import { Puyo } from '../../../common/Puyo/Puyo';
 
 export interface PuyoOnFieldBodyProps {
   fieldPuyos: FieldPuyoInterface[];
-  onClickFieldCell?: (x: number, y: number) => void;
+  onClickFieldCell?: (coord: CoordInterface) => void;
 }
 
 export function PuyoOnFieldBody({ fieldPuyos, onClickFieldCell }: PuyoOnFieldBodyProps) {
