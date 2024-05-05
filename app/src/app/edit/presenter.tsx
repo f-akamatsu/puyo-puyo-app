@@ -8,6 +8,7 @@ export interface EditorPresenterProps {
   fieldPuyos: FieldPuyoInterface[];
   score: number;
   onClickSelectPuyo: (newPuyoColor: number) => void;
+  onClickFieldCell: (x: number, y: number) => void;
 }
 
 export function EditorPresenter({
@@ -15,11 +16,12 @@ export function EditorPresenter({
   fieldPuyos,
   score,
   onClickSelectPuyo,
+  onClickFieldCell,
 }: EditorPresenterProps) {
   return (
     <Flex>
       <SelectPuyo selectedPuyoColor={selectedPuyoColor} onClick={onClickSelectPuyo} />
-      <Field fieldPuyos={fieldPuyos} score={score} />
+      <Field fieldPuyos={fieldPuyos} score={score} onClickFieldCell={onClickFieldCell} />
     </Flex>
   );
 }

@@ -1,3 +1,5 @@
+import { Optional } from 'typescript-optional';
+
 /**
  * ぷよぷよの色を表すEnum
  */
@@ -17,6 +19,11 @@ export class PuyoColor {
     public readonly name: string
   ) {
     PuyoColor._values.push(this);
+  }
+
+  static fromValue(value: number): PuyoColor {
+    const puyoColor = Optional.ofNullable(this._values.find((p) => p.value === value));
+    return puyoColor.get();
   }
 
   isColor(): boolean {

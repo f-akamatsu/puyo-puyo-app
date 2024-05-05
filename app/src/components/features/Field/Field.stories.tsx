@@ -17,7 +17,7 @@ Basic.args = {
     fieldPuyos: [
       {
         puyoColor: 1,
-        stickTogether: {
+        connect: {
           above: false,
           right: false,
           below: false,
@@ -27,7 +27,7 @@ Basic.args = {
       },
       {
         puyoColor: 2,
-        stickTogether: {
+        connect: {
           above: false,
           right: false,
           below: false,
@@ -37,7 +37,7 @@ Basic.args = {
       },
       {
         puyoColor: 3,
-        stickTogether: {
+        connect: {
           above: false,
           right: false,
           below: false,
@@ -47,7 +47,7 @@ Basic.args = {
       },
       {
         puyoColor: 4,
-        stickTogether: {
+        connect: {
           above: false,
           right: false,
           below: false,
@@ -57,7 +57,7 @@ Basic.args = {
       },
       {
         puyoColor: 5,
-        stickTogether: {
+        connect: {
           above: false,
           right: false,
           below: false,
@@ -67,7 +67,7 @@ Basic.args = {
       },
       {
         puyoColor: 9,
-        stickTogether: {
+        connect: {
           above: false,
           right: false,
           below: false,

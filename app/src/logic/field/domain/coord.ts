@@ -1,3 +1,5 @@
+import { CoordInterface } from '@/interfaces/FieldInterfaces';
+
 /**
  * 座標クラス
  */
@@ -35,6 +37,10 @@ export class Coord {
    */
   isGhost(): boolean {
     return this._y === Coord.Y_SIZE - 1;
+  }
+
+  toInterface(): CoordInterface {
+    return { x: this._x, y: this._y };
   }
 
   get x(): number {

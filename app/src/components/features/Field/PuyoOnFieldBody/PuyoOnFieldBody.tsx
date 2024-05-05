@@ -27,7 +27,7 @@ export function PuyoOnFieldBody({ fieldPuyos, onClickFieldCell }: PuyoOnFieldBod
       {fieldPuyos.map((p) => (
         <Puyo
           puyoColor={p.puyoColor}
-          stickTogether={p.stickTogether}
+          connect={p.connect}
           position='absolute'
           top={top(p.coord.y)}
           left={left(p.coord.x)}

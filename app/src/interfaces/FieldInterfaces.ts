@@ -1,7 +1,7 @@
 export interface FieldPuyoInterface {
   puyoColor: number;
   coord: CoordInterface;
-  stickTogether: StickTogetherInterface;
+  connect: ConnectInterface;
 }
 
 export interface CoordInterface {
@@ -9,7 +9,7 @@ export interface CoordInterface {
   y: number;
 }
 
-export interface StickTogetherInterface {
+export interface ConnectInterface {
   above: boolean;
   right: boolean;
   below: boolean;

@@ -14,7 +14,7 @@ export const Basic: Story = (args: PuyoProps) => {
 
 Basic.args = {
   puyoColor: 1,
-  stickTogether: {
+  connect: {
     above: false,
     right: false,
     below: false,
