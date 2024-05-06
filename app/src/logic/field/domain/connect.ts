@@ -21,6 +21,9 @@ export class Connect {
     this._left = Optional.ofNullable(left).orElse(false);
   }
 
+  /**
+   *
+   */
   toInterface(): ConnectInterface {
     return {
       above: this._above,

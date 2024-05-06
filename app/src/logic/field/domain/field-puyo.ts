@@ -28,6 +28,9 @@ export class FieldPuyo {
     };
   }
 
+  /**
+   *
+   */
   static from(fieldPuyoIF: FieldPuyoInterface): FieldPuyo {
     const puyoColor = PuyoColor.fromValue(fieldPuyoIF.puyoColor);
     const fieldCoord = new FieldCoord(fieldPuyoIF.fieldCoord.x, fieldPuyoIF.fieldCoord.y);

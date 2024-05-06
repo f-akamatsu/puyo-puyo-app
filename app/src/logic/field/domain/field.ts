@@ -101,6 +101,9 @@ export class Field {
     return this._fieldPuyos.map((fieldPuyo) => fieldPuyo.toInterface());
   }
 
+  /**
+   *
+   */
   static from(fieldPuyosIF: FieldPuyoInterface[]): Field {
     const fieldPuyos = fieldPuyosIF.map((fieldPuyoIF) => FieldPuyo.from(fieldPuyoIF));
     return new Field(fieldPuyos);

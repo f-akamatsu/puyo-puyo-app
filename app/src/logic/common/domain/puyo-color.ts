@@ -20,6 +20,9 @@ export class PuyoColor {
     PuyoColor._values.push(this);
   }
 
+  /**
+   *
+   */
   static fromValue(value: number): PuyoColor {
     const puyoColor = Optional.ofNullable(this._values.find((p) => p.value === value));
     return puyoColor.get();

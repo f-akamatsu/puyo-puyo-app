@@ -3,6 +3,9 @@ import { Field } from '../domain/field';
 import { FieldPuyo } from '../domain/field-puyo';
 import { FieldCoord } from '../domain/field-coord';
 
+/**
+ * フィールドサービス
+ */
 export class FieldService {
   /**
    * フィールドにぷよをセット

@@ -36,10 +36,16 @@ export class FieldCoord extends Coord {
     return this.y === FieldCoord.Y_SIZE - 1;
   }
 
+  /**
+   *
+   */
   toInterface(): FieldCoordInterface {
     return { x: this.x, y: this.y };
   }
 
+  /**
+   *
+   */
   static from(fieldCoordIF: FieldCoordInterface): FieldCoord {
     return new FieldCoord(fieldCoordIF.x, fieldCoordIF.y);
   }
