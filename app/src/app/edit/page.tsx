@@ -24,6 +24,14 @@ export default function Edit() {
   };
 
   /**
+   * 連鎖開始がクリックされたとき
+   */
+  const handleClickStartChain = () => {
+    const newFieldPuyos = fieldServie.startChain(fieldPuyos);
+    setFieldPuyos(newFieldPuyos);
+  };
+
+  /**
    * フィールドのぷよを消す
    */
   const removeFieldPuyo = (fieldCoord: FieldCoordInterface) => {
@@ -42,8 +50,6 @@ export default function Edit() {
     };
     const newFieldPuyos = fieldServie.setFieldPuyo(fieldPuyos, newFieldPuyo);
     setFieldPuyos(newFieldPuyos);
-
-    console.log(newFieldPuyos);
   };
 
   return (
@@ -53,6 +59,7 @@ export default function Edit() {
       score={score}
       onClickSelectPuyo={setSelectedPuyoColor}
       onClickFieldCell={handleClickFieldCell}
+      onClickStartChain={handleClickStartChain}
     />
   );
 }

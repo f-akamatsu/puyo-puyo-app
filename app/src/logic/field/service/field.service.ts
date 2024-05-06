@@ -36,4 +36,15 @@ export class FieldService {
 
     return field.toInterface();
   }
+
+  /**
+   * 連鎖開始
+   */
+  startChain(fieldPuyosIF: FieldPuyoInterface[]): FieldPuyoInterface[] {
+    const field = Field.from(fieldPuyosIF);
+
+    field.startChain();
+
+    return field.toInterface();
+  }
 }

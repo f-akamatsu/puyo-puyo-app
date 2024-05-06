@@ -2,7 +2,10 @@
  * 座標
  */
 export class Coord {
-  static readonly URDL = [new Coord(0, 1), new Coord(1, 0), new Coord(0, -1), new Coord(-1, 0)];
+  /**
+   * 上隣、右隣、下隣、左隣、のCoordの配列
+   */
+  static readonly ARBL = [new Coord(0, 1), new Coord(1, 0), new Coord(0, -1), new Coord(-1, 0)];
 
   private readonly _x: number;
   private readonly _y: number;

@@ -45,6 +45,10 @@ export class FieldPuyo {
     return this._fieldCoord;
   }
 
+  set fieldCoord(fieldCoord: FieldCoord) {
+    this._fieldCoord = fieldCoord;
+  }
+
   set connect(connect: Connect) {
     this._connect = connect;
   }

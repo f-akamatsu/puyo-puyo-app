@@ -35,6 +35,16 @@ export class Field {
   }
 
   /**
+   * 連鎖開始
+   */
+  startChain(): void {
+    // 1. 落とす
+    this.drop();
+
+    // 2. 消す
+  }
+
+  /**
    * 各ぷよのくっつきを設定する
    */
   private setConnect(): void {
@@ -52,10 +62,18 @@ export class Field {
       }
 
       const connectArray: boolean[] = [];
-      Coord.URDL.forEach((urdlCoord) => {
+      Coord.ARBL.forEach((urdlCoord) => {
         try {
           const neighborCoord = fieldPuyo.fieldCoord.add(urdlCoord);
-          const neighborFieldPuyo = this.getFieldPuyo(neighborCoord);
+          const neighborFieldPuyoOptional = this.getFieldPuyo(neighborCoord);
+
+          if (neighborFieldPuyoOptional.isEmpty()) {
+            // getFieldPuyoで隣のぷよがなかった場合(＝隣にぷよがない場合)、その隣とはくっつきなし
+            connectArray.push(false);
+            return;
+          }
+
+          const neighborFieldPuyo = neighborFieldPuyoOptional.get();
 
           if (neighborFieldPuyo.fieldCoord.isGhost()) {
             // 隣がゆうれいぷよの場合、その隣とはくっつきなし
@@ -66,9 +84,7 @@ export class Field {
           const connect = fieldPuyo.puyoColor === neighborFieldPuyo.puyoColor;
           connectArray.push(connect);
         } catch (e) {
-          // ・addで範囲外の座標になった場合(＝隣が壁の場合)
-          // ・getFieldPuyoで隣のぷよがなかった場合(＝隣にぷよがない場合)
-          // その隣とはくっつきなし
+          // ・addで範囲外の座標になった場合(＝隣が壁の場合)、その隣とはくっつきなし
           connectArray.push(false);
         }
       });
@@ -85,13 +101,49 @@ export class Field {
   /**
    * 指定の座標のぷよを取得
    */
-  private getFieldPuyo(fieldCoord: FieldCoord): FieldPuyo {
+  private getFieldPuyo(fieldCoord: FieldCoord): Optional<FieldPuyo> {
     const fieldPuyo = Optional.ofNullable(
       this._fieldPuyos.find((p) => {
         return p.fieldCoord.equals(fieldCoord);
       })
     );
-    return fieldPuyo.get();
+    return fieldPuyo;
+  }
+
+  /**
+   * 浮いているぷよを落とす
+   */
+  private drop(): void {
+    for (let x = 0; x < FieldCoord.X_SIZE; x++) {
+      for (let y = 0; y < FieldCoord.Y_SIZE - 1; y++) {
+        // 下の段から順にチェック。
+        // ぷよがある場合はスキップ。
+        // ぷよがない場合は、それより上にぷよがあるかを確認し、あれば落としてくる。
+        // 最上段はそれより上にぷよはないため、チェック不要。
+        const toFieldCoord = new FieldCoord(x, y);
+        const toFieldPuyoOptional = this.getFieldPuyo(toFieldCoord);
+
+        if (toFieldPuyoOptional.isPresent()) {
+          continue;
+        }
+
+        let fromFieldCoord = new FieldCoord(x, y);
+        let fromFieldPuyoOptional: Optional<FieldPuyo>;
+
+        do {
+          fromFieldCoord = fromFieldCoord.addY(1);
+          fromFieldPuyoOptional = this.getFieldPuyo(fromFieldCoord);
+        } while (fromFieldCoord.y < FieldCoord.Y_SIZE - 1 && fromFieldPuyoOptional.isEmpty());
+
+        if (fromFieldPuyoOptional.isEmpty()) {
+          continue;
+        }
+
+        const fromFieldPuyo = fromFieldPuyoOptional.get();
+        fromFieldPuyo.fieldCoord = toFieldCoord;
+        fromFieldPuyo.connect = new Connect();
+      }
+    }
   }
 
   /**
