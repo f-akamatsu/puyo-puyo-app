@@ -20,6 +20,10 @@ export class PuyoColor {
     PuyoColor._values.push(this);
   }
 
+  public static get values(): PuyoColor[] {
+    return PuyoColor._values;
+  }
+
   /**
    *
    */
