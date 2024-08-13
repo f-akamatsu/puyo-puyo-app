@@ -19,7 +19,7 @@ export class Field {
   /**
    * ぷよをセット
    */
-  setFieldPuyo(newFieldPuyo: FieldPuyo): void {
+  public setFieldPuyo(newFieldPuyo: FieldPuyo): void {
     this.removeFieldPuyo(newFieldPuyo.fieldCoord);
     this._fieldPuyos.push(newFieldPuyo);
     this.setConnect();
@@ -28,7 +28,7 @@ export class Field {
   /**
    * ぷよを取り除く
    */
-  removeFieldPuyo(fieldCoord: FieldCoord): void {
+  public removeFieldPuyo(fieldCoord: FieldCoord): void {
     const removedFiledPuyos = this._fieldPuyos.filter((p) => !p.fieldCoord.equals(fieldCoord));
     this._fieldPuyos = removedFiledPuyos;
     this.setConnect();
@@ -37,7 +37,7 @@ export class Field {
   /**
    * 連鎖開始
    */
-  startChain(): void {
+  public startChain(): void {
     // 1. 落とす
     this.drop();
 
@@ -147,14 +147,14 @@ export class Field {
   }
 
   /**
-   *
+   * コンポーネント側とのインターフェースを生成する
    */
   toInterface(): FieldPuyoInterface[] {
     return this._fieldPuyos.map((fieldPuyo) => fieldPuyo.toInterface());
   }
 
   /**
-   *
+   * インターフェースから生成する
    */
   static from(fieldPuyosIF: FieldPuyoInterface[]): Field {
     const fieldPuyos = fieldPuyosIF.map((fieldPuyoIF) => FieldPuyo.from(fieldPuyoIF));

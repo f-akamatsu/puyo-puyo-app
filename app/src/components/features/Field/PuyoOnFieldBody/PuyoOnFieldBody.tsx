@@ -21,11 +21,16 @@ export function PuyoOnFieldBody({ fieldPuyos, onClickFieldCell }: PuyoOnFieldBod
     return `${x * 32}px`;
   };
 
+  const key = (coord: FieldCoordInterface) => {
+    return coord.x + coord.y * 6;
+  };
+
   return (
     <Box position='relative'>
       <FieldBody onClickFieldCell={onClickFieldCell} top={0} left={0} />
       {fieldPuyos.map((p) => (
         <Puyo
+          key={key(p.fieldCoord)}
           puyoColor={p.puyoColor}
           connect={p.connect}
           position='absolute'
