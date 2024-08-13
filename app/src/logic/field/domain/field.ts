@@ -84,7 +84,7 @@ export class Field {
           const connect = fieldPuyo.puyoColor === neighborFieldPuyo.puyoColor;
           connectArray.push(connect);
         } catch (e) {
-          // ・addで範囲外の座標になった場合(＝隣が壁の場合)、その隣とはくっつきなし
+          // addで範囲外の座標になった場合(＝隣が壁の場合)、その隣とはくっつきなし
           connectArray.push(false);
         }
       });
