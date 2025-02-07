@@ -10,7 +10,8 @@
     "prelint": "prettier --check .",
     "format": "prettier --write .",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "clean": "rimraf node_modules .next .turbo"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",

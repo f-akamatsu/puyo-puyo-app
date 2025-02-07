@@ -1,6 +1,14 @@
 {
   "name": "puyo-puyo-app",
   "version": "0.1.0",
-  "scripts": {},
-  "dependencies": {}
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "clean": "turbo run clean && rimraf node_modules"
+  },
+  "packageManager": "pnpm@9.13.0",
+  "devDependencies": {
+    "rimraf": "^6.0.1",
+    "turbo": "^2.4.0"
+  }
 }
