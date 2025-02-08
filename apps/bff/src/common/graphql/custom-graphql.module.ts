@@ -14,5 +14,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
   ],
+  exports: [],
+  providers: [],
 })
 export class CustomGraphQLModule {}

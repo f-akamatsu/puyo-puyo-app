@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type PuyoImageUploadUrl {
+  fileId: String!
+  uploadUrl: String!
+}
+
 type Query {
+  getPuyoImageUploadUrl: PuyoImageUploadUrl!
   sample: String!
 }
