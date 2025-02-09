@@ -1,8 +1,8 @@
 import { ConnectInterface } from '@/interfaces/FieldInterfaces';
-import { Img, ImgProps } from '@chakra-ui/react';
+import { Image, ImageProps } from '@chakra-ui/react';
 import { useMemo } from 'react';
 
-export interface PuyoProps extends ImgProps {
+export interface PuyoProps extends ImageProps {
   puyoColor: number;
   connect?: ConnectInterface;
 }
@@ -28,7 +28,7 @@ export function Puyo({ puyoColor, connect, ...otherProps }: PuyoProps) {
   }, [puyoColor, connect]);
 
   return (
-    <Img
+    <Image
       src={`images/puyo/${src}`}
       w='31.5px'
       h='30px'
