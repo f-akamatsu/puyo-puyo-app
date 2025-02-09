@@ -11,19 +11,26 @@
     "format": "prettier --write .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "clean": "rimraf node_modules .next .turbo"
+    "clean": "rimraf node_modules .next .turbo",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@urql/next": "^1.1.4",
     "framer-motion": "^10.16.5",
+    "graphql": "^16.10.0",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "typescript-optional": "^3.0.0-alpha.3"
+    "typescript-optional": "^3.0.0-alpha.3",
+    "urql": "^4.2.1"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.4",
+    "@graphql-codegen/client-preset": "^4.6.2",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@storybook/addon-essentials": "^8.5.3",
     "@storybook/addon-interactions": "^8.5.3",
     "@storybook/addon-links": "^8.5.3",
