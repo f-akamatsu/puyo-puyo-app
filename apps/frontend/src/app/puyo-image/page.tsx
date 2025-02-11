@@ -1,7 +1,13 @@
 'use client';
 
+import { useFileUpload } from '@chakra-ui/react';
 import { PuyoImagePresenter } from './presenter';
 
 export default function PuyoImage() {
-  return <PuyoImagePresenter />;
+  const fileUpload = useFileUpload({
+    maxFiles: 1,
+    accept: ['image/png', 'image/jpeg'],
+  });
+
+  return <PuyoImagePresenter fileUpload={fileUpload} />;
 }
