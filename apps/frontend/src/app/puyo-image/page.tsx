@@ -35,7 +35,7 @@ export default function PuyoImage() {
     if (!data) return;
 
     // URLにファイルアップロード
-    await axios.put(data?.getPuyoImageUploadUrl.uploadUrl, file, {
+    await axios.put(data.getPuyoImageUploadUrl.uploadUrl, file, {
       headers: {
         'Content-Type': file.type,
       },
