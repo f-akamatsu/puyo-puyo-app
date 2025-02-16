@@ -3,7 +3,7 @@ import glob
 from grpc_tools import protoc
 
 PROTO_SRC = '../../packages/protos'
-OUTPUT_DIR = 'generated'
+OUTPUT_DIR = 'src/generated'
 
 def main():
   os.makedirs(OUTPUT_DIR, exist_ok=True)
