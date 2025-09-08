@@ -4,5 +4,8 @@
   "workbench.colorCustomizations": {
     "titleBar.activeBackground": "#009A57",
     "titleBar.activeForeground": "#ffffff"
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
   }
 }

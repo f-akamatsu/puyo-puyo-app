@@ -1,5 +1,5 @@
 import { FieldCoordInterface } from '@/interfaces/FieldInterfaces';
-import { Coord } from '@/logic/common/domain/coord';
+import { Coord } from '@/logic/domain/common/value-objects/coord';
 
 /**
  * Field座標

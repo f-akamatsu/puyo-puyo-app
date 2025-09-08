@@ -5,10 +5,10 @@ import { Optional } from 'typescript-optional';
  * くっつき
  */
 export class Connect {
-  private _above: boolean;
-  private _right: boolean;
-  private _below: boolean;
-  private _left: boolean;
+  private readonly _above: boolean;
+  private readonly _right: boolean;
+  private readonly _below: boolean;
+  private readonly _left: boolean;
 
   constructor();
 

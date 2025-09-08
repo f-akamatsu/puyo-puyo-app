@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import { EditorPresenter } from './presenter';
 import { FieldCoordInterface, FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
-import { FieldService } from '@/logic/field/service/field.service';
+import { FieldService } from '@/logic/service/field.service';
+import { useState } from 'react';
+import { EditPresenter } from './presenter';
 
 export default function Edit() {
   const fieldServie = new FieldService();
@@ -27,8 +27,9 @@ export default function Edit() {
    * 連鎖開始がクリックされたとき
    */
   const handleClickStartChain = () => {
-    const newFieldPuyos = fieldServie.startChain(fieldPuyos);
-    setFieldPuyos(newFieldPuyos);
+    const result = fieldServie.dropAndChain(fieldPuyos);
+    setFieldPuyos(result.fieldPuyos);
+    setScore(result.score.total);
   };
 
   /**
@@ -53,7 +54,7 @@ export default function Edit() {
   };
 
   return (
-    <EditorPresenter
+    <EditPresenter
       selectedPuyoColor={selectedPuyoColor}
       fieldPuyos={fieldPuyos}
       score={score}

@@ -1,7 +1,8 @@
 import { Box } from '@chakra-ui/react';
+import { ReactNode } from 'react';
 
 export interface FrameProps {
-  children: JSX.Element;
+  children: ReactNode;
 }
 
 export function Frame({ children }: FrameProps) {

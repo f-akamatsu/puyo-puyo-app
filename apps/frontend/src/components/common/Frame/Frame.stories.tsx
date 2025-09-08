@@ -1,6 +1,6 @@
+import { Box } from '@chakra-ui/react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Frame } from './Frame';
-import { Box } from '@chakra-ui/react';
 
 const meta: Meta<typeof Frame> = {
   component: Frame,

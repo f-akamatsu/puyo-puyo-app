@@ -1,7 +1,7 @@
+import { PuyoColor } from '@/logic/domain/common/value-objects/puyo-color';
+import { Flex } from '@chakra-ui/react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Puyo, PuyoProps } from './Puyo';
-import { Flex } from '@chakra-ui/react';
-import { PuyoColor } from '@/logic/common/domain/puyo-color';
 
 const meta: Meta<typeof Puyo> = {
   component: Puyo,

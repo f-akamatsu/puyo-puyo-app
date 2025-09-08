@@ -13,7 +13,6 @@ export function Score({ score }: ScoreProps) {
   return (
     <Text
       as='div'
-      w='192px'
       m={0}
       textAlign='right'
       userSelect='none'

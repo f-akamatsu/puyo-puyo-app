@@ -18,8 +18,8 @@ export class Coord {
   /**
    * equals
    */
-  equals(coord: Coord): boolean {
-    return this._x === coord.x && this._y === coord.y;
+  equals(other: Coord): boolean {
+    return this._x === other.x && this._y === other.y;
   }
 
   get x(): number {

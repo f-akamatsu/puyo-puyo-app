@@ -1,7 +1,9 @@
+import { OneChainEvent } from '../field/events/chain-event';
+
 /**
- * 得点
+ * 1連鎖分の得点
  */
-export class Score {
+export class ChainScore {
   private static readonly CHAIN_BONUS = [
     0, 8, 16, 32, 64, 96, 128, 160, 192, 224, 256, 288, 320, 352, 384, 416, 448, 480, 512,
   ];
@@ -9,15 +11,15 @@ export class Score {
   private static readonly COLOR_BONUS = [0, 3, 6, 12, 24];
 
   /** 消去数 */
-  private _popNum: number;
+  private readonly _popNum: number;
   /** 連鎖数 */
-  private _chainNum: number;
+  private readonly _chainNum: number;
   /** 色数 */
-  private _colorNum: number;
+  private readonly _colorNum: number;
   /** 連結数 */
-  private _connectNums: number[];
+  private readonly _connectNums: number[];
   /** 得点 */
-  private _score: number;
+  private readonly _score: number;
 
   constructor(chainNum: number, colorNum: number, connectNums: number[]) {
     const popNum = connectNums.reduce((sum, n) => {
@@ -49,18 +51,46 @@ export class Score {
    */
   private calcBonus(chainNum: number, colorNum: number, connectNums: number[]): number {
     // 連鎖
-    const chainBonus = Score.CHAIN_BONUS[chainNum - 1];
+    const chainBonus = ChainScore.CHAIN_BONUS[chainNum - 1];
 
     // 色数
-    const colorBonus = Score.COLOR_BONUS[colorNum - 1];
+    const colorBonus = ChainScore.COLOR_BONUS[colorNum - 1];
 
     // 連結
     const connectBonus = connectNums.reduce((sum, connectNum) => {
       const index = (connectNum > 11 ? 11 : connectNum) - 4;
-      return sum + Score.CONNECT_BONUS[index];
+      return sum + ChainScore.CONNECT_BONUS[index];
     }, 0);
 
     const bonus = colorBonus + chainBonus + connectBonus;
     return bonus === 0 ? 1 : bonus;
+  }
+
+  /** 得点 */
+  get score(): number {
+    return this._score;
+  }
+
+  /** 連鎖数 */
+  get chainNum(): number {
+    return this._chainNum;
+  }
+
+  /** 色数 */
+  get colorNum(): number {
+    return this._colorNum;
+  }
+
+  /** 連結数 */
+  get connectNums(): number[] {
+    return [...this._connectNums];
+  }
+
+  /**
+   * 一連鎖分のイベントから得点を計算する
+   */
+  public static fromOneChainEvent(oneChainEvent: OneChainEvent, chainNum: number): ChainScore {
+    const eraseEvent = oneChainEvent.eraseEvent;
+    return new ChainScore(chainNum, eraseEvent.colorNum, eraseEvent.connectNums);
   }
 }

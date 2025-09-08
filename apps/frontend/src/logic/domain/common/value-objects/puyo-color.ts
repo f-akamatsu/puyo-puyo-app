@@ -33,15 +33,29 @@ export class PuyoColor {
   }
 
   /**
+   * 等価性（値オブジェクトとしての等価）
+   */
+  equals(other: PuyoColor): boolean {
+    return this.value === other.value;
+  }
+
+  /**
    * 色ぷよか
    */
   isColor(): boolean {
     return (
-      this === PuyoColor.GREEN ||
-      this === PuyoColor.RED ||
-      this === PuyoColor.BLUE ||
-      this === PuyoColor.YELLOW ||
-      this === PuyoColor.PURPLE
+      this.equals(PuyoColor.GREEN) ||
+      this.equals(PuyoColor.RED) ||
+      this.equals(PuyoColor.BLUE) ||
+      this.equals(PuyoColor.YELLOW) ||
+      this.equals(PuyoColor.PURPLE)
     );
+  }
+
+  /**
+   * おじゃまぷよか
+   */
+  isOjama(): boolean {
+    return this.equals(PuyoColor.OJAMA);
   }
 }

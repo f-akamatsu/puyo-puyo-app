@@ -2,9 +2,15 @@
   "name": "puyo-puyo-app",
   "version": "0.1.0",
   "private": true,
+  "pnpm": {
+    "overrides": {
+      "flat-cache": "^4.0.1"
+    }
+  },
   "scripts": {
     "dev": "turbo run dev",
-    "clean": "turbo run clean && rimraf node_modules"
+    "clean": "turbo run clean && rimraf node_modules",
+    "test": "turbo run test"
   },
   "packageManager": "pnpm@9.13.0",
   "devDependencies": {
