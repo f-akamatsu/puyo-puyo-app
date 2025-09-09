@@ -61,7 +61,6 @@ export default function Edit() {
     <EditPresenter
       selectedPuyoColor={selectedPuyoColor}
       fieldPuyos={fieldPuyos}
-      overlayPuyos={[]}
       score={score}
       scoreText={scoreText}
       onClickSelectPuyo={setSelectedPuyoColor}

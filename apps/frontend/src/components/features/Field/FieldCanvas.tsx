@@ -27,7 +27,6 @@ type OverlayPuyo = FieldPuyoInterface & {
 
 export interface FieldCanvasProps {
   fieldPuyos: FieldPuyoInterface[];
-  overlayPuyos?: OverlayPuyo[]; // 外部から与えるオーバーレイ（通常は未使用）
   onClickFieldCell?: (fieldCoord: FieldCoordInterface) => void;
   onScoreDisplay?: (payload: { type: 'formula'; text: string } | { type: 'total'; value: number }) => void;
 }
@@ -52,7 +51,7 @@ const FALL_MS_PER_CELL = 20; // 1マスあたりの落下時間（等速）
  * - 連鎖アニメーション（内部状態で描画を制御）
  */
 export const FieldCanvas = forwardRef<FieldCanvasHandle, FieldCanvasProps>(
-  ({ fieldPuyos, overlayPuyos = [], onClickFieldCell, onScoreDisplay }, ref) => {
+  ({ fieldPuyos, onClickFieldCell, onScoreDisplay }, ref) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const hoverCellRef = useRef<{ cx: number; cy: number } | null>(null);
     const imageCacheRef = useRef<Map<string, HTMLImageElement>>(new Map());
@@ -111,7 +110,7 @@ export const FieldCanvas = forwardRef<FieldCanvasHandle, FieldCanvasProps>(
         sig: getSig(p.puyoColor, p.connect),
       }));
 
-      const overlayList = [...overlayPuyos, ...animOverlay].map((p) => ({
+      const overlayList = [...animOverlay].map((p) => ({
         x: p.fieldCoord.x,
         y: p.fieldCoord.y,
         color: p.customColorDir ?? p.puyoColor,
@@ -315,7 +314,7 @@ export const FieldCanvas = forwardRef<FieldCanvasHandle, FieldCanvasProps>(
         canvasEl.removeEventListener('mouseleave', handleMouseLeave);
         canvasEl.removeEventListener('click', handleClick);
       };
-    }, [fieldPuyos, overlayPuyos, animField, animOverlay, onClickFieldCell]);
+    }, [fieldPuyos, animField, animOverlay, onClickFieldCell]);
 
     // 連鎖アニメーション実装（親から命令）
     useImperativeHandle(ref, () => ({

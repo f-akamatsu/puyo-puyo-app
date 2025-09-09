@@ -9,7 +9,6 @@ import type React from 'react';
 export interface EditPresenterProps {
   selectedPuyoColor: number;
   fieldPuyos: FieldPuyoInterface[];
-  overlayPuyos?: FieldPuyoInterface[];
   score: number;
   scoreText?: string;
   onClickSelectPuyo: (newPuyoColor: number) => void;
@@ -22,7 +21,6 @@ export interface EditPresenterProps {
 export function EditPresenter({
   selectedPuyoColor,
   fieldPuyos,
-  overlayPuyos,
   score,
   scoreText,
   onClickSelectPuyo,
@@ -39,7 +37,6 @@ export function EditPresenter({
         <FieldCanvas
           ref={fieldCanvasRef}
           fieldPuyos={fieldPuyos}
-          overlayPuyos={overlayPuyos}
           onClickFieldCell={onClickFieldCell}
           onScoreDisplay={onScoreDisplay}
         />
