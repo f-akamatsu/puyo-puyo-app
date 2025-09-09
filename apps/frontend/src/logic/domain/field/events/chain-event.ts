@@ -25,4 +25,8 @@ export class OneChainEvent {
   get eraseEvent(): EraseEvent {
     return this._eraseEvent;
   }
+
+  get dropEvent(): DropEvent {
+    return this._dropEvent;
+  }
 }

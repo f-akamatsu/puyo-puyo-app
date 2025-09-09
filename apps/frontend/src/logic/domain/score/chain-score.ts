@@ -20,6 +20,8 @@ export class ChainScore {
   private readonly _connectNums: number[];
   /** 得点 */
   private readonly _score: number;
+  /** ボーナス（chain+color+connect、0なら1） */
+  private readonly _bonus: number;
 
   constructor(chainNum: number, colorNum: number, connectNums: number[]) {
     const popNum = connectNums.reduce((sum, n) => {
@@ -29,7 +31,9 @@ export class ChainScore {
     this._chainNum = chainNum;
     this._colorNum = colorNum;
     this._connectNums = connectNums;
-    this._score = this.calcScore(popNum, chainNum, colorNum, connectNums);
+    const bonus = this.calcBonus(chainNum, colorNum, connectNums);
+    this._bonus = bonus;
+    this._score = popNum * bonus * 10;
   }
 
   /**
@@ -69,6 +73,21 @@ export class ChainScore {
   /** 得点 */
   get score(): number {
     return this._score;
+  }
+
+  /** ボーナス値（常に1以上） */
+  get bonus(): number {
+    return this._bonus;
+  }
+
+  /** 消去数 */
+  get popNum(): number {
+    return this._popNum;
+  }
+
+  /** 基本点（消去数×10） */
+  get base(): number {
+    return this._popNum * 10;
   }
 
   /** 連鎖数 */

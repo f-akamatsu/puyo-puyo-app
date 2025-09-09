@@ -1,22 +1,22 @@
-import { Box } from '@chakra-ui/react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Score, ScoreProps } from './Score';
+import { VStack } from '@chakra-ui/react';
+import type { Meta } from '@storybook/react';
+import { Score } from './Score';
 
 const meta: Meta<typeof Score> = {
   component: Score,
 };
 
 export default meta;
-type Story = StoryObj<typeof Score>;
 
-export const Basic: Story = (args: ScoreProps) => {
+export const Basic = () => {
   return (
-    <Box w={200}>
-      <Score {...args} />
-    </Box>
+    <VStack w={200} align='flex-end'>
+      <Score text={0} />
+      <Score text={12345} />
+      <Score text={12345678} />
+      <Score text={'40×  1'} />
+      <Score text={'40× 10'} />
+      <Score text={'40×100'} />
+    </VStack>
   );
-};
-
-Basic.args = {
-  score: 12345,
 };

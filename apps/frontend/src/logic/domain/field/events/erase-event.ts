@@ -62,4 +62,18 @@ export class EraseEvent {
     this._erased.forEach((e) => colorValueSet.add(e.color));
     return colorValueSet.size;
   }
+
+  /**
+   * 消去された色ぷよのかたまり一覧
+   */
+  get erased(): ReadonlyArray<ConnectedPuyosErased> {
+    return this._erased;
+  }
+
+  /**
+   * 消去対象となったおじゃまの座標一覧
+   */
+  get ojamaErased(): ReadonlyArray<FieldCoord> {
+    return this._ojamaErased;
+  }
 }

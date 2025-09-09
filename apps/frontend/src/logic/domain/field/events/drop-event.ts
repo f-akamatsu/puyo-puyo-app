@@ -17,6 +17,21 @@ export class PuyoDropped {
     this._to = to;
     this._color = color;
   }
+
+  /** 落ちる前の座標 */
+  get from(): FieldCoord {
+    return this._from;
+  }
+
+  /** 落ちた先の座標 */
+  get to(): FieldCoord {
+    return this._to;
+  }
+
+  /** 色 */
+  get color(): PuyoColor {
+    return this._color;
+  }
 }
 
 /**
@@ -28,5 +43,10 @@ export class DropEvent {
 
   constructor(dropped: PuyoDropped[]) {
     this._dropped = Object.freeze([...dropped]);
+  }
+
+  /** 落下の配列 */
+  get dropped(): ReadonlyArray<PuyoDropped> {
+    return this._dropped;
   }
 }
