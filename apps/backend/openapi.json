@@ -1,0 +1,149 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/v1": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/v1/fields/analyze": {
+      "post": {
+        "operationId": "FieldController_analyzeField",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "description": "盤面画像ファイル",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadImageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldAnalysisResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "fields"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Puyo Backend API",
+    "description": "Puyo field analysis API",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "UploadImageDto": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary"
+          }
+        },
+        "required": [
+          "file"
+        ]
+      },
+      "FieldAnalysisResponseDto": {
+        "type": "object",
+        "properties": {
+          "rows": {
+            "type": "number",
+            "example": 12,
+            "description": "行数（通常12）"
+          },
+          "cols": {
+            "type": "number",
+            "example": 6,
+            "description": "列数（通常6）"
+          },
+          "grid": {
+            "type": "array",
+            "description": "盤面の色2次元配列 [rows][cols]",
+            "example": [
+              [
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+              ],
+              [
+                "red",
+                "green",
+                "blue",
+                "yellow",
+                "purple",
+                "red"
+              ]
+            ],
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "red",
+                  "blue",
+                  "green",
+                  "yellow",
+                  "purple",
+                  "ojama",
+                  "empty"
+                ]
+              }
+            }
+          },
+          "confidence": {
+            "type": "number",
+            "example": 0.98,
+            "description": "全体の平均信頼度（0.0-1.0）"
+          },
+          "debug": {
+            "type": "object",
+            "description": "デバッグ情報（任意）",
+            "example": {
+              "note": "This is a fixed stub response."
+            }
+          }
+        },
+        "required": [
+          "rows",
+          "cols",
+          "grid",
+          "confidence"
+        ]
+      }
+    }
+  }
+}
