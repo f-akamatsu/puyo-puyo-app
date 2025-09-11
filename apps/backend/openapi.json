@@ -77,49 +77,119 @@
       "FieldAnalysisResponseDto": {
         "type": "object",
         "properties": {
-          "rows": {
-            "type": "number",
-            "example": 12,
-            "description": "行数（通常12）"
-          },
-          "cols": {
-            "type": "number",
-            "example": 6,
-            "description": "列数（通常6）"
-          },
           "grid": {
             "type": "array",
-            "description": "盤面の色2次元配列 [rows][cols]",
+            "description": "盤面の色コード2次元配列 [12][6]（常に固定サイズ）。0:empty, 1:green, 2:red, 3:blue, 4:yellow, 5:purple, 9:ojama",
             "example": [
               [
-                "empty",
-                "empty",
-                "empty",
-                "empty",
-                "empty",
-                "empty"
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
               ],
               [
-                "red",
-                "green",
-                "blue",
-                "yellow",
-                "purple",
-                "red"
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                2,
+                1,
+                3,
+                4,
+                5,
+                2
+              ],
+              [
+                9,
+                1,
+                3,
+                4,
+                5,
+                2
               ]
             ],
             "items": {
               "type": "array",
               "items": {
-                "type": "string",
+                "type": "integer",
                 "enum": [
-                  "red",
-                  "blue",
-                  "green",
-                  "yellow",
-                  "purple",
-                  "ojama",
-                  "empty"
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  9
                 ]
               }
             }
@@ -128,18 +198,9 @@
             "type": "number",
             "example": 0.98,
             "description": "全体の平均信頼度（0.0-1.0）"
-          },
-          "debug": {
-            "type": "object",
-            "description": "デバッグ情報（任意）",
-            "example": {
-              "note": "This is a fixed stub response."
-            }
           }
         },
         "required": [
-          "rows",
-          "cols",
           "grid",
           "confidence"
         ]
