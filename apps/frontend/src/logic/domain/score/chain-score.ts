@@ -1,3 +1,4 @@
+import type { ChainScoreInterface } from '@/interfaces/FieldInterfaces';
 import { OneChainEvent } from '../field/events/chain-event';
 
 /**
@@ -20,7 +21,7 @@ export class ChainScore {
   private readonly _connectNums: number[];
   /** 得点 */
   private readonly _score: number;
-  /** ボーナス（chain+color+connect、0なら1） */
+  /** ボーナス */
   private readonly _bonus: number;
 
   constructor(chainNum: number, colorNum: number, connectNums: number[]) {
@@ -34,20 +35,6 @@ export class ChainScore {
     const bonus = this.calcBonus(chainNum, colorNum, connectNums);
     this._bonus = bonus;
     this._score = popNum * bonus * 10;
-  }
-
-  /**
-   * 得点を計算する
-   */
-  private calcScore(
-    popNum: number,
-    chainNum: number,
-    colorNum: number,
-    connectNums: number[]
-  ): number {
-    const bonus = popNum > 0 ? this.calcBonus(chainNum, colorNum, connectNums) : 0;
-    const score = popNum * bonus * 10;
-    return score;
   }
 
   /**
@@ -111,5 +98,15 @@ export class ChainScore {
   public static fromOneChainEvent(oneChainEvent: OneChainEvent, chainNum: number): ChainScore {
     const eraseEvent = oneChainEvent.eraseEvent;
     return new ChainScore(chainNum, eraseEvent.colorNum, eraseEvent.connectNums);
+  }
+
+  /**
+   * インターフェースへ変換
+   */
+  toInterface(): ChainScoreInterface {
+    return {
+      popNum: this._popNum,
+      bonus: this._bonus,
+    };
   }
 }

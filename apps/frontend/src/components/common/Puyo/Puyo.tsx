@@ -4,15 +4,18 @@ import { useMemo } from 'react';
 
 export interface PuyoProps extends ImageProps {
   puyoColor: number;
+  isPopping?: boolean;
   connect?: ConnectInterface;
 }
 
-export function Puyo({ puyoColor, connect, ...otherProps }: PuyoProps) {
+export function Puyo({ puyoColor, isPopping = false, connect, ...otherProps }: PuyoProps) {
   const src = useMemo(() => {
     const _c = puyoColor;
 
     let _s: string;
-    if (connect === undefined) {
+    if (isPopping) {
+      _s = '9999';
+    } else if (connect === undefined) {
       _s = '0000';
     } else if (puyoColor === 9) {
       _s = '0000';
@@ -25,7 +28,7 @@ export function Puyo({ puyoColor, connect, ...otherProps }: PuyoProps) {
     }
 
     return `${_c}/${_s}.svg`;
-  }, [puyoColor, connect]);
+  }, [puyoColor, isPopping, connect]);
 
   return (
     <Image

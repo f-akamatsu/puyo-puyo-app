@@ -1,5 +1,9 @@
 import { PuyoColor } from '@/logic/domain/common/value-objects/puyo-color';
 import { FieldCoord } from '../value-objects/field-coord';
+import type {
+  ConnectedPuyosErasedInterface,
+  EraseEventInterface,
+} from '@/interfaces/EventInterfaces';
 
 /**
  *
@@ -23,6 +27,10 @@ export class ConnectedPuyosErased {
   /** 消去された色 */
   get color(): PuyoColor {
     return this._color;
+  }
+
+  toInterface(): ConnectedPuyosErasedInterface {
+    return { coords: [...this._coords], color: this._color };
   }
 }
 
@@ -75,5 +83,12 @@ export class EraseEvent {
    */
   get ojamaErased(): ReadonlyArray<FieldCoord> {
     return this._ojamaErased;
+  }
+
+  toInterface(): EraseEventInterface {
+    return {
+      erased: this._erased.map((e) => e.toInterface()),
+      ojamaErased: [...this._ojamaErased],
+    };
   }
 }

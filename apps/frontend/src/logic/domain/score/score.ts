@@ -1,4 +1,4 @@
-import { ScoreInterface } from '@/interfaces/FieldInterfaces';
+import { ChainScoreInterface, ScoreInterface } from '@/interfaces/FieldInterfaces';
 import { ChainEvent } from '../field/events/chain-event';
 import { ChainScore } from './chain-score';
 
@@ -10,7 +10,6 @@ export class Score {
   private readonly _total: number;
 
   constructor(chains: ChainScore[] = []) {
-    // 防御的コピー＋凍結で不変化
     this._chains = Object.freeze([...chains]);
     this._total = this._chains.reduce((sum, c) => sum + c.score, 0);
   }
@@ -31,10 +30,11 @@ export class Score {
   }
 
   /**
-   * コンポーネント側とのインターフェースを生成
+   * インターフェースへ変換
    */
   toInterface(): ScoreInterface {
-    return { total: this.total };
+    const chains: ChainScoreInterface[] = this._chains.map((c) => c.toInterface());
+    return { total: this.total, chains };
   }
 
   /**

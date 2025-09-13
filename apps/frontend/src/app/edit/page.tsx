@@ -1,10 +1,11 @@
 'use client';
 
+import type { FieldCanvasHandle } from '@/components/features/Field/FieldCanvas';
 import { FieldCoordInterface, FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
+import type { OjamaForecastInterface } from '@/interfaces/OjamaInterfaces';
 import { FieldService } from '@/logic/service/field.service';
 import { useRef, useState } from 'react';
 import { EditPresenter } from './presenter';
-import type { FieldCanvasHandle } from '@/components/features/Field/FieldCanvas';
 
 export default function Edit() {
   const fieldServie = new FieldService();
@@ -12,8 +13,8 @@ export default function Edit() {
   const [selectedPuyoColor, setSelectedPuyoColor] = useState<number>(1);
   const [fieldPuyos, setFieldPuyos] = useState<FieldPuyoInterface[]>([]);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
-  const [score, setScore] = useState<number>(0);
-  const [scoreText, setScoreText] = useState<string | undefined>(undefined);
+  const [scoreDisplay, setScoreDisplay] = useState<number | string>(0);
+  const [forecast, setForecast] = useState<OjamaForecastInterface | undefined>(undefined);
   const canvasRef = useRef<FieldCanvasHandle | null>(null);
 
   const handleClickFieldCell = (fieldCoord: FieldCoordInterface) => {
@@ -33,10 +34,11 @@ export default function Edit() {
       await canvasRef.current?.animateWithEvents({
         initialDropEvent: result.initialDropEvent,
         chainEvent: result.chainEvent,
+        scoreChains: result.score.chains,
       });
       setFieldPuyos(result.fieldPuyos);
-      setScoreText(undefined);
-      setScore(result.score.total);
+      setScoreDisplay(result.score.total);
+      setForecast(result.forecast);
     } finally {
       setIsAnimating(false);
     }
@@ -61,19 +63,14 @@ export default function Edit() {
     <EditPresenter
       selectedPuyoColor={selectedPuyoColor}
       fieldPuyos={fieldPuyos}
-      score={score}
-      scoreText={scoreText}
+      scoreDisplay={scoreDisplay}
+      forecast={forecast}
       onClickSelectPuyo={setSelectedPuyoColor}
       onClickFieldCell={handleClickFieldCell}
       onClickStartChain={handleClickStartChain}
       fieldCanvasRef={canvasRef}
       onScoreDisplay={(p) => {
-        if (p.type === 'formula') {
-          setScoreText(p.text);
-        } else {
-          setScoreText(undefined);
-          setScore(p.value);
-        }
+        setScoreDisplay(p.type === 'formula' ? p.text : p.value);
       }}
     />
   );

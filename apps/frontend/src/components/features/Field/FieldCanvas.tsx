@@ -1,13 +1,8 @@
 'use client';
 
-import type {
-  ChainEventInterface,
-  DropEventInterface,
-  OneChainEventInterface,
-} from '@/interfaces/EventInterfaces';
-import { FieldCoordInterface, FieldPuyoInterface } from '@/interfaces/FieldInterfaces';
+import type { ChainEventInterface, DropEventInterface, OneChainEventInterface } from '@/interfaces/EventInterfaces';
+import { FieldCoordInterface, FieldPuyoInterface, ChainScoreInterface } from '@/interfaces/FieldInterfaces';
 import { Spinner, Box, chakra } from '@chakra-ui/react';
-import { ChainScore } from '@/logic/domain/score/chain-score';
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
 // Canvas logical grid constants (used for initial sizing as well)
@@ -35,6 +30,7 @@ export interface FieldCanvasHandle {
   animateWithEvents(args: {
     initialDropEvent: DropEventInterface;
     chainEvent: ChainEventInterface;
+    scoreChains: ChainScoreInterface[];
   }): Promise<void>;
 }
 
@@ -318,7 +314,7 @@ export const FieldCanvas = forwardRef<FieldCanvasHandle, FieldCanvasProps>(
 
     // 連鎖アニメーション実装（親から命令）
     useImperativeHandle(ref, () => ({
-      animateWithEvents: async ({ initialDropEvent, chainEvent }) => {
+      animateWithEvents: async ({ initialDropEvent, chainEvent, scoreChains }) => {
         const toKey = (x: number, y: number) => `${x},${y}`;
         const workingMap = new Map<string, FieldPuyoInterface>();
         (animField ?? fieldPuyos).forEach((p) =>
@@ -491,17 +487,23 @@ export const FieldCanvas = forwardRef<FieldCanvasHandle, FieldCanvasProps>(
           });
         };
 
-        const animateChain = async (chain: ReadonlyArray<OneChainEventInterface>) => {
+        const animateChain = async (
+          chain: ReadonlyArray<OneChainEventInterface>,
+          scoreChains: ReadonlyArray<ChainScoreInterface>
+        ) => {
           const toKey = (x: number, y: number) => `${x},${y}`;
           let runningTotal = 0;
           for (const step of chain) {
-            const idx = chain.indexOf(step); // 0-based
-            const chainScore = ChainScore.fromOneChainEvent(step as any, idx + 1);
+            const idx = chain.indexOf(step);
+            const chainScoreIF = scoreChains[idx];
+            // Service/Domain が付与した最小明細を使用（UIからドメインを呼ばない）
+            const base = chainScoreIF.popNum * 10;
+            const bonus = chainScoreIF.bonus;
+            const stepScore = base * bonus;
             // step開始: 式表示（右側は3桁スペース確保）
             if (onScoreDisplay) {
-              const base = chainScore.base; // popNum*10
               // 数字幅に揃う FIGURE SPACE(U+2007) で3桁固定
-              const bonusStr = String(chainScore.bonus).padStart(3, '\u2007');
+              const bonusStr = String(bonus).padStart(3, '\u2007');
               onScoreDisplay({ type: 'formula', text: `${base}×${bonusStr}` });
             }
             const erasedCoords: { x: number; y: number }[] = [];
@@ -555,7 +557,7 @@ export const FieldCanvas = forwardRef<FieldCanvasHandle, FieldCanvasProps>(
             setBaseFromMap();
 
             // 合計値表示に切替
-            runningTotal += chainScore.score;
+            runningTotal += stepScore;
             if (onScoreDisplay) onScoreDisplay({ type: 'total', value: runningTotal });
 
             await animateDrops(step.dropEvent.dropped);
@@ -563,7 +565,7 @@ export const FieldCanvas = forwardRef<FieldCanvasHandle, FieldCanvasProps>(
         };
 
         await animateDrops(initialDropEvent.dropped);
-        await animateChain(chainEvent.chain);
+        await animateChain(chainEvent.chain, scoreChains);
         setAnimOverlay([]);
         setAnimField(null);
       },

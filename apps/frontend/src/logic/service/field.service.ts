@@ -1,15 +1,14 @@
+import type { ChainEventInterface, DropEventInterface } from '@/interfaces/EventInterfaces';
 import {
   FieldCoordInterface,
   FieldPuyoInterface,
   ScoreInterface,
 } from '@/interfaces/FieldInterfaces';
+import type { OjamaForecastInterface } from '@/interfaces/OjamaInterfaces';
 import { PuyoColor } from '../domain/common/value-objects/puyo-color';
-import type {
-  ChainEventInterface,
-  DropEventInterface,
-} from '@/interfaces/EventInterfaces';
 import { Field } from '../domain/field/field';
 import { FieldCoord } from '../domain/field/value-objects/field-coord';
+import { OjamaForecast } from '../domain/ojama/ojama-forecast';
 import { Score } from '../domain/score/score';
 
 /**
@@ -53,6 +52,7 @@ export class FieldService {
   dropAndChain(fieldPuyosIF: FieldPuyoInterface[]): {
     fieldPuyos: FieldPuyoInterface[];
     score: ScoreInterface;
+    forecast: OjamaForecastInterface;
   } {
     const field = Field.from(fieldPuyosIF);
 
@@ -60,10 +60,12 @@ export class FieldService {
     const chainEvent = field.chain();
 
     const score = Score.fromChainEvent(chainEvent);
+    const forecast = OjamaForecast.fromScore(score);
 
     return {
       fieldPuyos: field.toInterface(),
       score: score.toInterface(),
+      forecast: forecast.toInterface(),
     };
   }
 
@@ -73,20 +75,22 @@ export class FieldService {
   dropAndChainWithEvents(fieldPuyosIF: FieldPuyoInterface[]): {
     fieldPuyos: FieldPuyoInterface[];
     score: ScoreInterface;
+    forecast: OjamaForecastInterface;
     initialDropEvent: DropEventInterface;
     chainEvent: ChainEventInterface;
   } {
     const field = Field.from(fieldPuyosIF);
-    // 直前の浮き落下（通常ルール）。アニメーション用にイベントを返す
     const initialDropEvent = field.drop();
     const chainEvent = field.chain();
     const score = Score.fromChainEvent(chainEvent);
+    const forecast = OjamaForecast.fromScore(score);
 
     return {
       fieldPuyos: field.toInterface(),
       score: score.toInterface(),
-      initialDropEvent,
-      chainEvent,
+      forecast: forecast.toInterface(),
+      initialDropEvent: initialDropEvent.toInterface(),
+      chainEvent: chainEvent.toInterface(),
     };
   }
 }

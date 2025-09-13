@@ -1,5 +1,6 @@
 import { DropEvent } from './drop-event';
 import { EraseEvent } from './erase-event';
+import type { ChainEventInterface, OneChainEventInterface } from '@/interfaces/EventInterfaces';
 
 export class ChainEvent {
   private readonly _chain: ReadonlyArray<OneChainEvent>;
@@ -10,6 +11,10 @@ export class ChainEvent {
 
   get chain(): ReadonlyArray<OneChainEvent> {
     return this._chain;
+  }
+
+  toInterface(): ChainEventInterface {
+    return { chain: this._chain.map((c) => c.toInterface()) };
   }
 }
 
@@ -28,5 +33,12 @@ export class OneChainEvent {
 
   get dropEvent(): DropEvent {
     return this._dropEvent;
+  }
+
+  toInterface(): OneChainEventInterface {
+    return {
+      eraseEvent: this._eraseEvent.toInterface(),
+      dropEvent: this._dropEvent.toInterface(),
+    };
   }
 }

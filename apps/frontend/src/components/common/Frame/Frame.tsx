@@ -8,14 +8,15 @@ export interface FrameProps {
 export function Frame({ children }: FrameProps) {
   return (
     <Box
-      backgroundColor='#CCCCCC'
+      bgColor='#FFFFFF'
       p='6px'
       width='fit-content'
       skewY={-5}
       transform='auto'
       borderRadius='10px'
+      shadow='lg'
     >
-      <Box backgroundColor='#1E88E5' p='6px' width='fit-content' borderRadius='4px'>
+      <Box bgColor='blue.500' p='6px' width='fit-content' borderRadius='4px'>
         <Box transform='auto' skewY={5} my='10px'>
           {children}
         </Box>

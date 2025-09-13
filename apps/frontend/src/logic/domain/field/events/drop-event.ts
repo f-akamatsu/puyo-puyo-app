@@ -1,5 +1,6 @@
 import { PuyoColor } from '@/logic/domain/common/value-objects/puyo-color';
 import { FieldCoord } from '../value-objects/field-coord';
+import type { DropEventInterface, PuyoDroppedInterface } from '@/interfaces/EventInterfaces';
 
 /**
  * ぷよが落下した（ひとつのぷよ）
@@ -32,6 +33,10 @@ export class PuyoDropped {
   get color(): PuyoColor {
     return this._color;
   }
+
+  toInterface(): PuyoDroppedInterface {
+    return { from: this._from, to: this._to, color: this._color };
+  }
 }
 
 /**
@@ -48,5 +53,9 @@ export class DropEvent {
   /** 落下の配列 */
   get dropped(): ReadonlyArray<PuyoDropped> {
     return this._dropped;
+  }
+
+  toInterface(): DropEventInterface {
+    return { dropped: this._dropped.map((d) => d.toInterface()) };
   }
 }

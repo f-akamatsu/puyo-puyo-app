@@ -9,18 +9,18 @@ export interface PuyoDroppedInterface {
 }
 
 export interface DropEventInterface {
-  dropped: ReadonlyArray<PuyoDroppedInterface>;
+  dropped: PuyoDroppedInterface[];
 }
 
 // 消去イベント関連
 export interface ConnectedPuyosErasedInterface {
-  coords: ReadonlyArray<FieldCoord>;
+  coords: FieldCoord[];
   color: PuyoColor;
 }
 
 export interface EraseEventInterface {
-  erased: ReadonlyArray<ConnectedPuyosErasedInterface>;
-  ojamaErased: ReadonlyArray<FieldCoord>;
+  erased: ConnectedPuyosErasedInterface[];
+  ojamaErased: FieldCoord[];
 }
 
 // 連鎖イベント関連
@@ -30,6 +30,5 @@ export interface OneChainEventInterface {
 }
 
 export interface ChainEventInterface {
-  chain: ReadonlyArray<OneChainEventInterface>;
+  chain: OneChainEventInterface[];
 }
-

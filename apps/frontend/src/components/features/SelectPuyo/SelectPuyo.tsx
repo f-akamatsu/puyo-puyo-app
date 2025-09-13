@@ -1,4 +1,4 @@
-import { Center, SimpleGrid } from '@chakra-ui/react';
+import { Card, Center, SimpleGrid } from '@chakra-ui/react';
 import { Puyo } from '../../common/Puyo/Puyo';
 import { Kesu } from './Kesu/Kesu';
 
@@ -28,34 +28,28 @@ export function SelectPuyo({ selectedPuyoColor, onClick }: SelectPuyoProps) {
   };
 
   return (
-    <SimpleGrid
-      columns={3}
-      w='fit-content'
-      h='fit-content'
-      bgColor='#FCFCFC'
-      p='6px'
-      borderWidth='4px'
-      borderColor='#1E88E5'
-      borderStyle='solid'
-      borderRadius='10px'
-    >
-      {puyoColorList.map((puyoColor, index) => (
-        <Center
-          key={index}
-          w='44px'
-          h='44px'
-          m='2px'
-          bgColor={bgColor(puyoColor)}
-          opacity={opacity(puyoColor)}
-          borderRadius='50%'
-          cursor='pointer'
-          onClick={() => {
-            onClick(puyoColor);
-          }}
-        >
-          {puyoColor === 0 ? <Kesu /> : <Puyo puyoColor={puyoColor} />}
-        </Center>
-      ))}
-    </SimpleGrid>
+    <Card.Root bgColor='white' variant='elevated'>
+      <Card.Body>
+        <SimpleGrid columns={3} w='fit-content' h='fit-content'>
+          {puyoColorList.map((puyoColor, index) => (
+            <Center
+              key={index}
+              w='44px'
+              h='44px'
+              m='2px'
+              bgColor={bgColor(puyoColor)}
+              opacity={opacity(puyoColor)}
+              borderRadius='50%'
+              cursor='pointer'
+              onClick={() => {
+                onClick(puyoColor);
+              }}
+            >
+              {puyoColor === 0 ? <Kesu /> : <Puyo puyoColor={puyoColor} />}
+            </Center>
+          ))}
+        </SimpleGrid>
+      </Card.Body>
+    </Card.Root>
   );
 }

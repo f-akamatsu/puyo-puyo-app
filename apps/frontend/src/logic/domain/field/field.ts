@@ -225,7 +225,7 @@ export class Field {
   }
 
   /**
-   * コンポーネント側とのインターフェースを生成する
+   * インターフェースへ変換する
    */
   toInterface(): FieldPuyoInterface[] {
     const result: FieldPuyoInterface[] = [];

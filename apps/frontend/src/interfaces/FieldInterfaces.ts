@@ -16,8 +16,17 @@ export interface ConnectInterface {
   left: boolean;
 }
 
+// 連鎖ごとのスコア明細
+export interface ChainScoreInterface {
+  /** 消去数合計（基礎点は popNum×10 で計算可能） */
+  popNum: number;
+  /** ボーナス値（1以上） */
+  bonus: number;
+}
+
 // 得点（UIとロジックのインターフェース）
-// 最小構成。将来的に chains などを拡張予定。
 export interface ScoreInterface {
   total: number;
+  /** 連鎖ごとのスコア明細 */
+  chains: ChainScoreInterface[];
 }
